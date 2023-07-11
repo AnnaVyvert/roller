@@ -37,6 +37,10 @@
 .card {
   width: 95%;
   margin-bottom: 20px;
+
+  & .card-img-top {
+    height: 200px;
+  }
 }
 
 ::-webkit-scrollbar {
