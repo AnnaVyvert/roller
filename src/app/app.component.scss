@@ -13,6 +13,7 @@
   padding: 8px 0;
   border-radius: 4px;
   box-shadow: 0 1px 5px rgba(0,0,0,.5);
+  max-width: var(--roller-max-width);
 }
 
 .card-deck {
@@ -30,6 +31,7 @@
   text-align: center;
   top: calc(var(--height-roller)/2);
   border: 3px solid lightgrey;
+  max-width: var(--roller-max-width);
 }
 
 .card {
