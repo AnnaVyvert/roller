@@ -8,7 +8,7 @@
   height: var(--height-roller);
   overflow-y: scroll;
   overflow-x: hidden;
-  border: 3px solid lightgrey;
+  // border: 3px solid lightgrey;
   position: relative;
   padding: 8px 0;
   border-radius: 4px;
@@ -45,4 +45,20 @@
 
 ::-webkit-scrollbar {
   width: 0;
+}
+
+.roller-panel .btn {
+  margin: 0 100px;
+}
+
+.navigation-panel {
+  display: grid;
+  grid-template-columns: min-content min-content min-content;
+  grid-auto-rows: min-content min-content min-content;
+  justify-content: center;
+
+}
+
+.btn {
+  border-radius: 50%;
 }
