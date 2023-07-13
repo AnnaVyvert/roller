@@ -1,25 +1,33 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { getRandomInt } from 'src/utils/rand';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
-import { loadStore, setValue2Store } from 'src/utils/json-worker';
+import {
+  getValueFromStore,
+  loadStore,
+  setValue2Store,
+} from 'src/utils/json-worker';
 import { scrollDown, scrollUp } from 'src/utils/scroll';
 
 @Component({
   selector: 'app-scroll-page',
   templateUrl: './scroll-page.component.html',
-  styleUrls: ['./scroll-page.component.scss']
+  styleUrls: ['./scroll-page.component.scss'],
 })
 export class ScrollPageComponent {
   @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef;
 
   scrollElement: HTMLElement | undefined;
 
+  selectedJson: string = getValueFromStore('selected-json') ?? '0';
+  selectedIndex: number = parseInt(this.selectedJson);
+
   store: JsonScheme[][] = loadStore('json');
-  cards: JsonScheme[] = this.store[0];
+
+  cards: JsonScheme[] = this.store[this.selectedIndex];
 
   displayedCards: JsonScheme[] = [];
 
-  cardTitle: string = this.cards[0].name;
+  cardTitle: string = this.cards[this.selectedIndex].name;
 
   ngOnInit(): void {
     this.displayedCards = scrollDown(this.cards, this.displayedCards);
@@ -27,17 +35,17 @@ export class ScrollPageComponent {
 
   ngAfterViewInit(): void {
     this.scrollElement = this.scrollContainer.nativeElement;
-    this.scrollStartInMiddle()
+    this.scrollStartInMiddle();
   }
 
-  scrollStartInMiddle = () => 
-    this.scrollElement!.scrollTop = this.scrollElement!.clientHeight / 2;
+  scrollStartInMiddle = () =>
+    (this.scrollElement!.scrollTop = this.scrollElement!.clientHeight / 2);
 
   updateCards(i: number) {
     setValue2Store('selected-json', i.toString());
-    this.cards = this.store[i]
+    this.cards = this.store[i];
     this.displayedCards = this.cards;
-    this.scrollStartInMiddle()
+    this.scrollStartInMiddle();
   }
 
   isScroll = false;
