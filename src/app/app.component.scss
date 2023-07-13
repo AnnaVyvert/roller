@@ -51,6 +51,7 @@
   border: 1px solid var(--gray-color);
 
   & .card-img-top {
+    border-bottom: 1px solid var(--gray-color);
     height: 200px;
   }
 }
