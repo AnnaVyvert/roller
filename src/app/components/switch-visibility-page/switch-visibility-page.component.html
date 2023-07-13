@@ -19,7 +19,7 @@
 
   <div class="switch-container">
     <div class="form-check form-switch m-3" *ngFor="let el of jsonStore">
-      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [checked]="true">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [checked]="!checkboxStoreArray.includes(el.id)" (click)="toggleKey(el.id)">
       <label class="form-check-label" for="flexSwitchCheckDefault">
         {{el.name}}
       </label>

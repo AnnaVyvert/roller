@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
-import { getValueFromStore, loadStore } from 'src/utils/json-worker';
+import {
+  getValueFromStore,
+  loadStore,
+  setValue2Store,
+} from 'src/utils/json-worker';
 
 @Component({
   selector: 'app-switch-visibility-page',
@@ -9,14 +13,22 @@ import { getValueFromStore, loadStore } from 'src/utils/json-worker';
 })
 export class SwitchVisibilityPageComponent {
   store: JsonScheme[][] = loadStore('json');
-  selectedJson: string | null = getValueFromStore('selected-json');
-  jsonStore: JsonScheme[] | undefined;
+  selectedJson: string = getValueFromStore('selected-json') ?? '0';
+  selectedIndex: number = parseInt(this.selectedJson);
+  jsonStore: JsonScheme[] = this.store[this.selectedIndex];
+  checkboxStore: number[][] = JSON.parse(
+    getValueFromStore('checkbox-store') ?? '[[]]'
+  );
+  checkboxStoreArray: number[] = this.checkboxStore[this.selectedIndex] ?? [];
 
-  ngOnInit(): void {
-    
-    if (this.selectedJson) {
-      this.jsonStore = this.store[parseInt(this.selectedJson) ?? 0];
-    }
-    console.log(this.jsonStore);
+  ngOnInit(): void {}
+
+  toggleKey(id: number) {
+    this.checkboxStoreArray.includes(id)
+      ? this.checkboxStoreArray.splice(this.checkboxStoreArray.indexOf(id), 1)
+      : this.checkboxStoreArray?.push(id);
+
+    this.checkboxStore[this.selectedIndex] = this.checkboxStoreArray;
+    setValue2Store('checkbox-store', JSON.stringify(this.checkboxStore));
   }
 }
