@@ -2,6 +2,17 @@
   text-align: -webkit-center;
 }
 
+.dropdown-toggle,
+.dropdown-menu {
+  width: var(--roller-max-width);
+  border: 1px solid #212529;
+
+  .dropdown-item:hover {
+    background-color: lightgray;
+    color: initial;
+  }
+}
+
 .scroll-container {
   margin: 4px;
   width: 97%;
@@ -59,6 +70,7 @@
 
 }
 
-.btn {
+.roller-panel .btn,
+.navigation-panel .btn {
   border-radius: 50%;
 }

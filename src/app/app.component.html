@@ -1,9 +1,27 @@
+<div class="m-4">
+  <div class="dropdown">
+    <div class="btn btn-secondary-outline dropdown-toggle" data-bs-toggle="dropdown">
+      выбрать json
+    </div>
+    <div class="dropdown-menu">
+      <div
+        href="#"
+        class="dropdown-item btn btn-secondary-outline"
+        *ngFor="let el of store; index as i"
+        (click)="updateCards(i)"
+      >
+        json{{ i }}
+      </div>
+    </div>
+  </div>
+</div>
+
 <ng-container>
   <div class="scroll-container" #scrollContainer (scroll)="onScroll()">
     <!-- <div class='indicator'>{{cardTitle}}</div> -->
     <div class="card-deck">
       <div class="card" *ngFor="let card of displayedCards">
-        <img class="card-img-top" [src]="card.pic_url" alt="Card image">
+        <img class="card-img-top" [src]="card.pic_url" alt="Card image" />
         <div class="card-body">
           <h5 class="card-title">{{ card.name }}</h5>
           <!-- <p class="card-text">{{ card.description }}</p> -->
@@ -17,18 +35,20 @@
 </ng-container>
 
 <section class="roller-panel">
-  <button class='btn btn-secondary-outline' (click)="randomScroll()">R</button>
-  <button class='btn btn-secondary-outline' (click)="continiusScroll()">S</button>
+  <button class="btn btn-secondary-outline" (click)="randomScroll()">R</button>
+  <button class="btn btn-secondary-outline" (click)="continiusScroll()">
+    S
+  </button>
 </section>
 
 <section class="navigation-panel">
   <div></div>
-  <button class='btn btn-secondary-outline'>⇧</button>
+  <button class="btn btn-secondary-outline">⇧</button>
   <div></div>
-  <button class='btn btn-secondary-outline'>⇦</button>
+  <button class="btn btn-secondary-outline">⇦</button>
   <div></div>
-  <button class='btn btn-secondary-outline'>⇨</button>
+  <button class="btn btn-secondary-outline">⇨</button>
   <div></div>
-  <button class='btn btn-secondary-outline'>⇩</button>
+  <button class="btn btn-secondary-outline">⇩</button>
   <div></div>
 </section>

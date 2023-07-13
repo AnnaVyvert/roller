@@ -15,7 +15,8 @@ export class AppComponent {
 
   localStoreName: string = 'json';
 
-  cards: JsonScheme[] = this.loadJson()[0];
+  store: JsonScheme[][] = this.loadJson();
+  cards: JsonScheme[] = this.store[0];
 
   displayedCards: JsonScheme[] = [];
 
@@ -27,7 +28,16 @@ export class AppComponent {
 
   ngAfterViewInit(): void {
     this.scrollElement = this.scrollContainer.nativeElement;
+    this.scrollStartInMiddle()
+  }
+
+  scrollStartInMiddle = () => 
     this.scrollElement!.scrollTop = this.scrollElement!.clientHeight / 2;
+
+  updateCards(i: number) {
+    this.cards = this.store[i]
+    this.displayedCards = this.cards;
+    this.scrollStartInMiddle()
   }
 
   isScroll = false;
@@ -80,6 +90,8 @@ export class AppComponent {
   }
 
   loadJson(): JsonScheme[][] {
+    console.log(JSON.parse(window.localStorage.getItem(this.localStoreName) ?? '[]'));
+    
     return JSON.parse(window.localStorage.getItem(this.localStoreName) ?? '[]');
   }
 }
