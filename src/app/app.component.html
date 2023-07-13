@@ -1,7 +1,10 @@
 <div class="m-4">
   <div class="dropdown">
-    <div class="btn btn-secondary-outline dropdown-toggle" data-bs-toggle="dropdown">
-      выбрать json
+    <div
+      class="btn btn-secondary-outline dropdown-toggle"
+      data-bs-toggle="dropdown"
+    >
+      поменять датасет
     </div>
     <div class="dropdown-menu">
       <div
@@ -34,21 +37,11 @@
   </div>
 </ng-container>
 
-<section class="roller-panel">
-  <button class="btn btn-secondary-outline" (click)="randomScroll()">R</button>
-  <button class="btn btn-secondary-outline" (click)="continiusScroll()">
-    S
-  </button>
-</section>
-
-<section class="navigation-panel">
-  <div></div>
-  <button class="btn btn-secondary-outline">⇧</button>
-  <div></div>
-  <button class="btn btn-secondary-outline">⇦</button>
-  <div></div>
-  <button class="btn btn-secondary-outline">⇨</button>
-  <div></div>
-  <button class="btn btn-secondary-outline">⇩</button>
-  <div></div>
-</section>
+<div class='btn-group-container m-4'>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-secondary" (click)="randomScroll()">R</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="continiusScroll()">S</button>
+    <button type="button" class="btn btn-outline-secondary">J</button>
+    <button type="button" class="btn btn-outline-secondary">C</button>
+  </div>  
+</div>

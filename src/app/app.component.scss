@@ -5,10 +5,10 @@
 .dropdown-toggle,
 .dropdown-menu {
   width: var(--roller-max-width);
-  border: 1px solid #212529;
+  border: 1px solid var(--gray-color);
 
   .dropdown-item:hover {
-    background-color: lightgray;
+    background-color: #e1e1e1;
     color: initial;
   }
 }
@@ -19,7 +19,7 @@
   height: var(--height-roller);
   overflow-y: scroll;
   overflow-x: hidden;
-  // border: 3px solid lightgrey;
+  border: 1px solid var(--gray-color);
   position: relative;
   padding: 8px 0;
   border-radius: 4px;
@@ -37,7 +37,7 @@
   position: fixed;
   z-index: 1;
   opacity: 0.5;
-  background: lightgray;
+  background: var(--gray-color);
   width: 100%;
   text-align: center;
   top: calc(var(--height-roller)/2);
@@ -48,6 +48,7 @@
 .card {
   width: 95%;
   margin-bottom: 20px;
+  border: 1px solid var(--gray-color);
 
   & .card-img-top {
     height: 200px;
@@ -58,19 +59,12 @@
   width: 0;
 }
 
-.roller-panel .btn {
-  margin: 0 100px;
+.btn-group-container {
+  text-align: center;
+
+  .btn-group {
+    width: var(--roller-max-width);
+    margin: auto;
+  }
 }
 
-.navigation-panel {
-  display: grid;
-  grid-template-columns: min-content min-content min-content;
-  grid-auto-rows: min-content min-content min-content;
-  justify-content: center;
-
-}
-
-.roller-panel .btn,
-.navigation-panel .btn {
-  border-radius: 50%;
-}
