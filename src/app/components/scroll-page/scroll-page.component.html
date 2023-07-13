@@ -4,7 +4,7 @@
       class="btn btn-secondary-outline dropdown-toggle"
       data-bs-toggle="dropdown"
     >
-      поменять датасет
+      поменять датасет [{{ selectedIndex }}]
     </div>
     <div class="dropdown-menu">
       <div
@@ -13,7 +13,7 @@
         *ngFor="let el of store; index as i"
         (click)="updateCards(i)"
       >
-        json{{ i }}
+        датасет [{{ i }}]
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
 <ng-container>
   <div class="scroll-container" #scrollContainer (scroll)="onScroll()">
     <!-- <div class='indicator'>{{cardTitle}}</div> -->
-    <div class='indicator-line'></div>
+    <div class="indicator-line"></div>
     <div class="card-deck">
       <div class="card" *ngFor="let card of displayedCards">
         <img class="card-img-top" [src]="card.pic_url" alt="Card image" />
@@ -38,19 +38,31 @@
   </div>
 </ng-container>
 
-<div class='btn-group-container m-4'>
+<div class="btn-group-container m-4">
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-outline-secondary" (click)="randomScroll()">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="randomScroll()"
+    >
       <i class="fa-solid fa-shuffle"></i>
     </button>
-    <button type="button" class="btn btn-outline-secondary" (click)="continiusScroll()">
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      (click)="continiusScroll()"
+    >
       <i class="fa-solid fa-scroll"></i>
     </button>
     <button type="button" class="btn btn-outline-secondary">
       <i class="fa-solid fa-file-pen"></i>
     </button>
-    <button type="button" class="btn btn-outline-secondary" routerLink='switch-visibility'>
+    <button
+      type="button"
+      class="btn btn-outline-secondary"
+      routerLink="switch-visibility"
+    >
       <i class="fa-solid fa-square-check"></i>
     </button>
-  </div>  
+  </div>
 </div>

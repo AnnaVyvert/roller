@@ -35,7 +35,9 @@ export class ScrollPageComponent {
   checkboxStoreArray: number[] = this.checkboxStore[this.selectedIndex] ?? [];
 
   ngOnInit(): void {
-    this.cards = this.cards.filter((el: JsonScheme) => !this.checkboxStoreArray.includes(el.id));
+    this.cards = this.cards.filter(
+      (el: JsonScheme) => !this.checkboxStoreArray.includes(el.id)
+    );
     this.displayedCards = scrollDown(this.cards, this.displayedCards);
   }
 
@@ -49,6 +51,7 @@ export class ScrollPageComponent {
 
   updateCards(i: number) {
     setValue2Store('selected-json', i.toString());
+    this.selectedIndex = i;
     this.cards = this.store[i];
     this.displayedCards = this.cards;
     this.scrollStartInMiddle();
