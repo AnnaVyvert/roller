@@ -22,6 +22,7 @@
 <ng-container>
   <div class="scroll-container" #scrollContainer (scroll)="onScroll()">
     <!-- <div class='indicator'>{{cardTitle}}</div> -->
+    <div class='indicator-line'></div>
     <div class="card-deck">
       <div class="card" *ngFor="let card of displayedCards">
         <img class="card-img-top" [src]="card.pic_url" alt="Card image" />

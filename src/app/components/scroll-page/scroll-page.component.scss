@@ -45,6 +45,17 @@
   max-width: var(--roller-max-width);
 }
 
+.indicator-line {
+  position: fixed;
+  z-index: 1;
+  opacity: 0.5;
+  width: 100%;
+  text-align: center;
+  top: calc(var(--height-roller)/1.5);
+  border-bottom: 1px solid firebrick;
+  max-width: var(--roller-max-width);
+}
+
 .card {
   width: 95%;
   margin-bottom: 20px;
