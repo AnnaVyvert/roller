@@ -1,0 +1,64 @@
+.head {
+  text-align: center;
+  border-bottom: 1px solid var(--gray-color);
+  font-size: 20px;
+}
+
+.btn {
+  height: 35px;
+}
+
+.btn.back {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+}
+
+.btn.manual {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+}
+
+
+.non-display {
+  display: none;
+}
+
+table {
+  width: 100%;
+  font-family: "Lucida Console", Monaco, monospace;
+  margin: 8px 0;
+}
+
+table input {
+  width: 100%;
+  border-color: transparent;
+}
+
+td.td-left,
+th.td-left {
+  padding: 0 8px;
+  word-break: break-word;
+}
+
+td,
+th {
+  border: solid 1px #ced4da;
+}
+
+td button {
+  border-color: transparent;
+  width: 100%;
+}
+
+textarea {
+  margin: 8px 0;
+  width: 100%;
+  min-height: 20rem;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  border-color: #ced4da;
+  background-color: transparent !important;
+}
