@@ -11,18 +11,39 @@
 <table>
   <thead>
     <tr>
-      <th class='td-left'>id</th>
-      <th class='td-left' colspan='2'>operations</th>
+      <th class="td-left">id</th>
+      <th class="td-left" colspan="2">operations</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let jsonStore of store; let i = index">
-      <td class='td-left'>датасет [{{ i }}]</td>
-      <td><button class="btn btn-outline-secondary" (click)="selectJsonStore(i)" [disabled]="jsonStoreSelected === i">{{jsonStoreSelected === i? ' ✓': '✎'}}</button></td>
-      <td><button class="btn btn-outline-secondary" (click)="removeJsonStore(i)" [disabled]="store.length < 2">-</button></td>
+      <td class="td-left">датасет [{{ i }}]</td>
+      <td>
+        <button
+          class="btn btn-outline-secondary"
+          (click)="selectJsonStore(i)"
+          [disabled]="jsonStoreSelected === i"
+        >
+          <i *ngIf="jsonStoreSelected == i" class="fa-solid fa-check"></i>
+          <i *ngIf="jsonStoreSelected !== i" class="fa-solid fa-edit"></i>
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-outline-secondary"
+          (click)="removeJsonStore(i)"
+          [disabled]="store.length < 2"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </td>
     </tr>
     <tr>
-      <td colspan='3'><button class="btn btn-outline-secondary" (click)="addJsonStore()">+</button></td>
+      <td colspan="3">
+        <button class="btn btn-outline-secondary" (click)="addJsonStore()">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -30,35 +51,81 @@
 <table>
   <thead>
     <tr>
-      <th class='td-left' *ngFor="let el of jsonScheme.types | keyvalue" [class.non-display]='!jsonScheme.show.includes(el.key)'>{{ el.key }}</th>
+      <th
+        class="td-left"
+        *ngFor="let el of jsonScheme.types | keyvalue"
+        [class.non-display]="!jsonScheme.show.includes(el.key)"
+      >
+        {{ el.key }}
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let json of jsonStore">
-      <td class='td-left' *ngFor="let el of json | keyvalue" [class.non-display]='!jsonScheme.show.includes(el.key)'>{{ el.value }}</td>
-      <td><button class="btn btn-outline-secondary" (click)="removeField(json.id)">-</button></td>
+      <td
+        class="td-left"
+        *ngFor="let el of json | keyvalue"
+        [class.non-display]="!jsonScheme.show.includes(el.key)"
+      >
+        {{ el.value }}
+      </td>
+      <td>
+        <button
+          class="btn btn-outline-secondary"
+          (click)="removeField(json.id)"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </td>
     </tr>
     <tr>
       <ng-container [formGroup]="addFieldForm">
-        <td *ngFor="let item of jsonScheme.types | keyvalue" [class.non-display]='item.key === "id"'>
-          <input class='form-control' type="text" [formControlName]="item.key" />
+        <td
+          *ngFor="let item of jsonScheme.types | keyvalue"
+          [class.non-display]="item.key === 'id'"
+        >
+          <input
+            class="form-control"
+            type="text"
+            [formControlName]="item.key"
+          />
         </td>
-        <td><button class="btn btn-outline-secondary" #fieldSubmit (click)="addField()">+</button></td>
+        <td>
+          <button
+            class="btn btn-outline-secondary"
+            #fieldSubmit
+            (click)="addField()"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </td>
       </ng-container>
     </tr>
   </tbody>
 </table>
 
-<textarea class='form-control' readonly cols="30" rows="10">{{
+<textarea class="form-control" readonly cols="30" rows="10">{{
   jsonStoreStr
 }}</textarea>
 
-<div class="input-group mb-3">
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile02" (change)="handleFileInput($event)" accept=".json">
-    <label class="custom-file-label">Choose file</label>
+<section class="file-manager">
+  <div class="files">
+    <input
+      type="file"
+      class="files__input"
+      accept=".json"
+      (change)="handleFileInput($event)"
+    />
+    <label for="file">
+      <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      <span class="file__label">загрузка</span>
+    </label>
   </div>
-  <div class="input-group-append" style='cursor: pointer;'>
-    <span class="input-group-text" (click)="exportJson()">Export</span>
+  <div class="files" (click)="exportJson()">
+    <input class="files__input" />
+    <label for="file">
+      <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      <span class="file__label">экспорт</span>
+    </label>
   </div>
-</div>
+</section>
