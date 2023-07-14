@@ -8,16 +8,18 @@
   </button> -->
 </div>
 
-<table>
+<table class="table store-dataset-panel table-striped">
   <thead>
     <tr>
-      <th class="td-left">id</th>
-      <th class="td-left" colspan="2">operations</th>
+      <th scope="col" class="store-dataset-panel__col_id td-left">id</th>
+      <th scope="col" class="store-dataset-panel__col_op td-left" colspan="2">
+        действия
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let jsonStore of store; let i = index">
-      <td class="td-left">датасет [{{ i }}]</td>
+      <td scope="row" class="td-left">датасет [{{ i }}]</td>
       <td>
         <button
           class="btn btn-outline-secondary"
@@ -28,7 +30,7 @@
           <i *ngIf="jsonStoreSelected !== i" class="fa-solid fa-edit"></i>
         </button>
       </td>
-      <td>
+      <td scope="row">
         <button
           class="btn btn-outline-secondary"
           (click)="removeJsonStore(i)"
@@ -39,7 +41,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="3">
+      <td colspan="3" scope="row">
         <button class="btn btn-outline-secondary" (click)="addJsonStore()">
           <i class="fa-solid fa-plus"></i>
         </button>
@@ -48,15 +50,19 @@
   </tbody>
 </table>
 
-<table>
+<table class="table dataset-panel table-striped">
   <thead>
     <tr>
       <th
-        class="td-left"
+        scope="col"
+        class="td-left dataset-panel__col"
         *ngFor="let el of jsonScheme.types | keyvalue"
         [class.non-display]="!jsonScheme.show.includes(el.key)"
       >
         {{ el.key }}
+      </th>
+      <th scope="col">
+        <i class="fa-solid fa-trash"></i>
       </th>
     </tr>
   </thead>
@@ -117,14 +123,14 @@
       (change)="handleFileInput($event)"
     />
     <label for="file">
-      <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      <i class="fa-solid fa-circle-down"></i>
       <span class="file__label">загрузка</span>
     </label>
   </div>
   <div class="files" (click)="exportJson()">
     <input class="files__input" />
     <label for="file">
-      <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      <i class="fa-solid fa-circle-up"></i>
       <span class="file__label">экспорт</span>
     </label>
   </div>
