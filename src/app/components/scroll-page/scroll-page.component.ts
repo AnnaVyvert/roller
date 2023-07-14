@@ -35,11 +35,14 @@ export class ScrollPageComponent {
   checkboxStoreArray: number[] = this.checkboxStore[this.selectedIndex] ?? [];
 
   ngOnInit(): void {
-    this.cards = this.cards.filter(
-      (el: JsonScheme) => !this.checkboxStoreArray.includes(el.id)
-    );
+    this.cards = this.updateCardsWithFilters();
     this.displayedCards = scrollDown(this.cards, this.displayedCards);
   }
+
+  updateCardsWithFilters = () =>
+    this.cards.filter(
+      (el: JsonScheme) => !this.checkboxStoreArray.includes(el.id)
+    );
 
   ngAfterViewInit(): void {
     this.scrollElement = this.scrollContainer.nativeElement;
@@ -55,6 +58,7 @@ export class ScrollPageComponent {
     this.cards = this.store[i];
     this.displayedCards = this.cards;
     this.scrollStartInMiddle();
+    this.cards = this.updateCardsWithFilters();
   }
 
   isScroll = false;
