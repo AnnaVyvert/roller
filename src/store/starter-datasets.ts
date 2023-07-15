@@ -144,7 +144,7 @@ export const starter: JsonScheme[][] = [
       id: 0.9737308446921551,
       name: 'курица с макаронами',
       pic_url:
-        'https://pizza-top.ru/800/600/https/izkuricy.ru/wp-content/uploads/2018/12/Grilled_Chicken_Spaghetti_Pasta_Recipe_with_Herbs-1.jpg',
+        'https://medaboutme.ru/upload/medialibrary/53f/shutterstock_85029160.jpg',
     },
     {
       id: 0.2188902382156479,
