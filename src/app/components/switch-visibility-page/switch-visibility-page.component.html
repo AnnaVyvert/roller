@@ -25,13 +25,36 @@
       <input
         class="form-check-input"
         type="checkbox"
-        id="flexSwitchCheckDefault"
         [checked]="!checkboxStoreArray.includes(el.id)"
         (click)="toggleKey(el.id)"
       />
-      <label class="form-check-label" for="flexSwitchCheckDefault">
+      <label class="form-check-label">
         {{ el.name }}
       </label>
     </div>
+  </div>
+</section>
+
+<section class="switch-container">
+  <div class="form-check form-switch m-2">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      (click)="setAllCheckboxes($event.target, [])"
+    />
+    <label class="form-check-label">
+      <b>выбрать всё</b>
+    </label>
+  </div>
+
+  <div class="form-check form-switch m-2">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      (click)="setAllCheckboxes($event.target, setAllCheckboxesFalse())"
+    />
+    <label class="fsorm-check-label">
+      <b>скрыть всё</b>
+    </label>
   </div>
 </section>

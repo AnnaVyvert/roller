@@ -37,6 +37,21 @@ export class SwitchVisibilityPageComponent {
     setValue2Store('checkbox-store', JSON.stringify(this.checkboxStore));
   }
 
+  setAllCheckboxesFalse = (): number[] =>
+    this.jsonStore.map((el: JsonScheme) => el.id);
+
+  setAllCheckboxes(ev: EventTarget | null, val: number[]) {
+    if (ev) {
+      const el = ev as HTMLInputElement;
+      this.checkboxStoreArray = val;
+      this.checkboxStore[this.selectedIndex] = this.checkboxStoreArray;
+      setValue2Store('checkbox-store', JSON.stringify(this.checkboxStore));
+      setTimeout(() => {
+        el.checked = false;
+      }, 500);
+    }
+  }
+
   openManual() {
     this.modalRef = this.modalService.open(ModalComponent, {
       data: {
