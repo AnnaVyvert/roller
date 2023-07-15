@@ -8,32 +8,30 @@
 
 .head {
   text-align: center;
-  border-bottom: 1px solid var(--gray-color);
+  border-bottom: 1px solid var(--gray-color-light);
   font-size: 20px;
 }
 
 .btn {
   height: 35px;
-}
+  border-color: var(--gray-color-light);
 
-.btn.back {
-  position: absolute;
-  left: 12px;
-  top: 14px;
-}
-
-.btn.manual {
-  position: absolute;
-  right: 12px;
-  top: 14px;
+  &.back {
+    position: absolute;
+    left: 12px;
+    top: 14px;
+  }
+  &.manual {
+    position: absolute;
+    right: 12px;
+    top: 14px;
+  }
 }
 
 .switch-container {
   display: grid;
-  // grid-auto-columns: auto;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows  : min-content;
-  // background-color: #f1f1f1;
 
   .form-switch {
     word-break: break-word;
