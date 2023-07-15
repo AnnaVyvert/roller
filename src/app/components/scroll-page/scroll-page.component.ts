@@ -39,6 +39,8 @@ export class ScrollPageComponent {
     this.displayedCards = scrollDown(this.cards, this.displayedCards);
   }
 
+  updateCheckboxStore = () => this.checkboxStore[this.selectedIndex] ?? [];
+
   updateCardsWithFilters = () =>
     this.cards.filter(
       (el: JsonScheme) => !this.checkboxStoreArray.includes(el.id)
@@ -55,10 +57,12 @@ export class ScrollPageComponent {
   updateCards(i: number) {
     setValue2Store('selected-json', i.toString());
     this.selectedIndex = i;
+    this.checkboxStoreArray = this.updateCheckboxStore();
     this.cards = this.store[i];
-    this.displayedCards = this.cards;
-    this.scrollStartInMiddle();
     this.cards = this.updateCardsWithFilters();
+    this.displayedCards = this.cards;
+
+    if (this.cards.length !== 1) this.scrollStartInMiddle();
   }
 
   isScroll = false;
@@ -87,7 +91,6 @@ export class ScrollPageComponent {
           this.scrollContainer.nativeElement.scrollTop += scrollPower;
           scrollPower--;
           if (scrollPower < 1) clearInterval(interval2);
-          console.log(interval, interval2);
         }, 15);
       }
     }, 15);

@@ -31,6 +31,12 @@
   display: block;
   text-align: -webkit-center;
   position: relative;
+
+  &.one-el {
+    // margin-top: 50%;
+    // transform: translateY(-50%);
+    transform: translateY(15%);
+  }
 }
 
 .indicator {
