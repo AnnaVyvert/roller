@@ -1,0 +1,21 @@
+::ng-deep mdb-modal-container {
+  background-color: rgb(0 0 0 / 40%);
+}
+.modal-content {
+
+  .modal-header,
+  .modal-body {
+    text-align: center;
+    align-self: center;
+  }
+
+  .modal-footer {
+    justify-content: center;
+  
+    button {
+      margin: 0 16px;
+      aspect-ratio: 1;
+      padding: 12px;
+    }
+  }
+}
