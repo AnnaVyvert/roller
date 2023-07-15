@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
+import { ModalComponent } from '../modal/modal.component';
+import { getValueFromStore, setValue2Store } from 'src/utils/json-worker';
 
 @Component({
   selector: 'app-datasets-editor-page',
@@ -9,6 +12,11 @@ import { JsonScheme } from 'src/interfaces/jsonScheme';
 })
 export class DatasetsEditorPageComponent {
   @ViewChild('fieldSubmit') fieldSubmitBtn!: ElementRef<HTMLButtonElement>;
+
+  modalRef: MdbModalRef<ModalComponent> | null = null;
+
+  constructor(private modalService: MdbModalService) {}
+
   localStoreName = 'json';
 
   jsonScheme = {
@@ -25,7 +33,9 @@ export class DatasetsEditorPageComponent {
   store: JsonScheme[][] = [];
   jsonStore: JsonScheme[] = [];
 
-  jsonStoreSelected: number = 0;
+  jsonStoreSelected: number = parseInt(
+    getValueFromStore('selected-json') ?? '0'
+  );
   storeStr: string = '';
   jsonStoreStr: string = '';
 
@@ -42,13 +52,24 @@ export class DatasetsEditorPageComponent {
   }
 
   removeField(id: number) {
-    this.jsonStore = this.jsonStore.filter((el: JsonScheme) => el.id !== id);
+    this.modalRef = this.modalService.open(ModalComponent, {
+      data: {
+        title: 'Подтвердите удаление поля:',
+        description: 'отменить это действие будет нельзя',
+      },
+      modalClass: 'modal-dialog-centered',
+    });
 
-    this.store[this.jsonStoreSelected] = this.jsonStore;
-
-    this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);
-
-    this.saveStore();
+    this.modalRef.onClose.subscribe((status: number) => {
+      if (status) {
+        this.jsonStore = this.jsonStore.filter(
+          (el: JsonScheme) => el.id !== id
+        );
+        this.store[this.jsonStoreSelected] = this.jsonStore;
+        this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);
+        this.saveStore();
+      }
+    });
   }
 
   addJsonStore() {
@@ -68,16 +89,27 @@ export class DatasetsEditorPageComponent {
 
   updateJsonStore() {
     this.jsonStore = this.store[this.jsonStoreSelected];
+    setValue2Store('selected-json', this.jsonStoreSelected.toString());
     this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);
   }
 
   removeJsonStore(id: number) {
-    this.store = this.store.filter((el: JsonScheme[], i) => i !== id);
+    this.modalRef = this.modalService.open(ModalComponent, {
+      data: {
+        title: 'Подтвердите удаление датасета:',
+        description: 'отменить это действие будет нельзя',
+      },
+      modalClass: 'modal-dialog-centered',
+    });
 
-    this.jsonStoreSelected = 0;
-    this.updateJsonStore();
-
-    this.saveStore();
+    this.modalRef.onClose.subscribe((status: number) => {
+      if (status) {
+        this.store = this.store.filter((el: JsonScheme[], i) => i !== id);
+        this.jsonStoreSelected = 0;
+        this.updateJsonStore();
+        this.saveStore();
+      }
+    });
   }
 
   handleFileInput(ev: Event) {
@@ -120,7 +152,8 @@ export class DatasetsEditorPageComponent {
 
   ngOnInit(): void {
     this.store = this.loadStore();
-    this.jsonStore = this.store[0];
+    this.jsonStore = this.store[this.jsonStoreSelected];
+    this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);
     Object.keys(this.jsonScheme.types).forEach((el) => {
       this.addFieldForm.addControl(el, new FormControl(null));
     });
