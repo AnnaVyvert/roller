@@ -1,5 +1,5 @@
 <div class="head p-3">
-  <button type="button" class="btn btn-outline-secondary back" routerLink="/">
+  <button type="button" class="btn btn-outline-secondary back" [routerLink]="checkJsonStore()">
     <i class="fa-solid fa-backward"></i>
   </button>
   Редактор датасетов
@@ -75,7 +75,7 @@
       >
         {{ el.value }}
       </td>
-      <td>
+      <td class='dataset-panel__row__action'>
         <button
           class="btn btn-outline-secondary"
           (click)="removeField(json.id)"

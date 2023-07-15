@@ -1,11 +1,12 @@
 .head {
   text-align: center;
-  border-bottom: 1px solid var(--gray-color);
+  border-bottom: 1px solid var(--gray-color-light);
   font-size: 20px;
 }
 
 .btn {
   height: 35px;
+  border-color: var(--gray-color-light);
 
   &.back {
     position: absolute;
@@ -49,6 +50,11 @@ table {
     }
   }
   tbody {
+
+    .dataset-panel__row__action {
+      vertical-align: middle;
+    }
+
     td {
       border: solid 1px var(--gray-color-light);
 
