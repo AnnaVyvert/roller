@@ -7,7 +7,11 @@
     <i class="fa-solid fa-backward"></i>
   </button>
   Редактор датасетов
-  <button type="button" class="btn btn-outline-secondary manual" (click)="openManual()">
+  <button
+    type="button"
+    class="btn btn-outline-secondary manual"
+    (click)="openManual()"
+  >
     <i class="fa-sharp fa-solid fa-circle-question"></i>
   </button>
 </div>
@@ -104,10 +108,13 @@
           <button
             class="btn btn-outline-secondary"
             #fieldSubmit
-            [disabled]="isFormValid()"
+            [disabled]="isFormInvalid()"
             (click)="addField()"
           >
-            <i class="fa-solid fa-plus"></i>
+            <i
+              class="fa-solid"
+              [ngClass]="isFormInvalid() ? 'fa-ban' : 'fa-plus'"
+            ></i>
           </button>
         </td>
       </ng-container>

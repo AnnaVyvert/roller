@@ -152,7 +152,7 @@ export class DatasetsEditorPageComponent {
     window.localStorage.setItem(this.localStoreName, this.storeStr);
   }
 
-  isFormValid() {
+  isFormInvalid() {
     const values = this.addFieldForm.value;
     //@ts-ignore
     return !values['name'].length || !values['pic_url'].length;
