@@ -154,8 +154,9 @@ export class DatasetsEditorPageComponent {
 
   isFormInvalid() {
     const values = this.addFieldForm.value;
+    
     //@ts-ignore
-    return !values['name'].length || !values['pic_url'].length;
+    return !values['name'] || !values['pic_url'];
   }
 
   ngOnInit(): void {
@@ -163,7 +164,7 @@ export class DatasetsEditorPageComponent {
     this.jsonStore = this.store[this.jsonStoreSelected];
     this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);
     Object.keys(this.jsonScheme.types).forEach((el) => {
-      this.addFieldForm.addControl(el, new FormControl(''));
+      this.addFieldForm.addControl(el, new FormControl(null));
     });
 
     this.saveStore();
