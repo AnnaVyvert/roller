@@ -178,8 +178,38 @@ export class DatasetsEditorPageComponent {
   openManual() {
     this.modalRef = this.modalService.open(ModalComponent, {
       data: {
-        title: '!ГАЙД!',
-        description: `description`,
+        title: 'User Guide',
+        description: `<h4 class="code-line" data-line-start="0" data-line-end="1"><a id="__0"></a>таблица детасетов:</h4>
+        <p class="has-line-data" data-line-start="1" data-line-end="5">
+          позволяет переключаться между вашими датасетами<br />
+          выбранный датасет (<i class="fa-solid fa-check"></i>)<br />
+          возможный для выбора датасет (<i class="fa-solid fa-edit"></i>)<br />
+          нижняя кнопка (<i class="fa-solid fa-plus"></i>) создаёт новый датасет
+        </p>
+        <h4 class="code-line" data-line-start="5" data-line-end="6"><a id="___5"></a>таблица полей датасета:</h4>
+        <p class="has-line-data" data-line-start="6" data-line-end="10">
+          позволяет удалять поле датасета<br />
+          нижняя форма позволяет добавлять новое поле<br />
+          если форма невалидна (<i class="fa-solid fa-ban"></i>), это означает, что<br />
+          одно из полей ввода пустое, иначе (<i class="fa-solid fa-plus"></i>)
+        </p>
+        <h4 class="code-line" data-line-start="10" data-line-end="11"><a id="___10"></a>превьювер полей датасета:</h4>
+        <p class="has-line-data" data-line-start="11" data-line-end="13">
+          отображает датасет в формате <strong>.json</strong><br />
+          превью содержимого файла при <strong>экспорте</strong>
+        </p>
+        <h4 class="code-line" data-line-start="13" data-line-end="14"><a id="___13"></a>импорт и экспорт:</h4>
+        <h5 class="code-line" data-line-start="14" data-line-end="15"><a id="middot_14"></a>·импорт:</h5>
+        <p class="has-line-data" data-line-start="15" data-line-end="17">
+          загрузка файла <strong>.json</strong>,<br />
+          заменяющего <strong>текущий датасет</strong>
+        </p>
+        <h5 class="code-line" data-line-start="17" data-line-end="18"><a id="middot_17"></a>·экспорт:</h5>
+        <p class="has-line-data" data-line-start="18" data-line-end="20">
+          скачать файл <strong>.json</strong>,<br />
+          взятый с текущего датасета
+        </p>
+        `,
         approveTemplate: false,
       },
       modalClass: 'modal-dialog-centered',

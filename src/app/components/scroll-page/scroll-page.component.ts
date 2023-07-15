@@ -122,8 +122,25 @@ export class ScrollPageComponent {
   openManual() {
     this.modalRef = this.modalService.open(ModalComponent, {
       data: {
-        title: '!ГАЙД!',
-        description: `description`,
+        title: 'User Guide',
+        description: `<h4 class="code-line" data-line-start="0" data-line-end="1"><a id="__0"></a>верхняя панель:</h4>
+        <p class="has-line-data" data-line-start="1" data-line-end="3">
+          тут вы можете менять датасеты,<br />
+          которые были созданы<br />в редакторе датасетов (<i class="fa-solid fa-file-pen"></i>)
+        </p>
+        <h4 class="code-line" data-line-start="3" data-line-end="4"><a id="__3"></a>лента карточек:</h4>
+        <p class="has-line-data" data-line-start="4" data-line-end="7">
+          лента для бесконечного скролла<br />
+          линия посередине - индикатор, показывающий<br />
+          на какой карточке остановилась лента
+        </p>
+        <h4 class="code-line" data-line-start="7" data-line-end="8"><a id="__7"></a>нижняя панель:</h4>
+        <p class="has-line-data" data-line-start="8" data-line-end="11">
+          панель для автоматического прокручивания ленты (<i class="fa-solid fa-shuffle"></i>) (<i class="fa-solid fa-scroll"></i>),<br />
+          перехода в редактор датасетов (<i class="fa-solid fa-file-pen"></i>)<br />
+          и страницу отображения карточек (<i class="fa-solid fa-square-check"></i>)
+        </p>
+        `,
         approveTemplate: false,
       },
       modalClass: 'modal-dialog-centered',

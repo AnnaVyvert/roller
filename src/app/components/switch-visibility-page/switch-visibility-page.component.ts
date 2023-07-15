@@ -40,8 +40,15 @@ export class SwitchVisibilityPageComponent {
   openManual() {
     this.modalRef = this.modalService.open(ModalComponent, {
       data: {
-        title: '!ГАЙД!',
-        description: `description`,
+        title: 'User Guide',
+        description: `<h4 class="code-line" data-line-start="0" data-line-end="1">тогглы (переключатели):</h4>
+        <p class="has-line-data" data-line-start="1" data-line-end="2">переключают статус видимости карточки в ленте карточек</p>
+        <h4 class="code-line" data-line-start="2" data-line-end="3"><a id="_2"></a>кнопки:</h4>
+        <h5 class="code-line" data-line-start="3" data-line-end="4"><a id="__3"></a>&middot; выбрать всё:</h5>
+        <p class="has-line-data" data-line-start="4" data-line-end="5">переключают все тогглы во включенное состояние</p>
+        <h5 class="code-line" data-line-start="5" data-line-end="6"><a id="__5"></a>&middot; скрыть всё:</h5>
+        <p class="has-line-data" data-line-start="6" data-line-end="7">переключают все тогглы в выключенное состояние</p>
+        `,
         approveTemplate: false,
       },
       modalClass: 'modal-dialog-centered',
