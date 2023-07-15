@@ -10,6 +10,7 @@ export class ModalComponent {
   title: string | null = null;
   description: string | null = null;
   approveTemplate: boolean = false;
+  hasCloseBtn: boolean = false;
 
   constructor(public modalRef: MdbModalRef<ModalComponent>) {}
 

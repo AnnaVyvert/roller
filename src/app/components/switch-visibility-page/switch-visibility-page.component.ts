@@ -50,6 +50,7 @@ export class SwitchVisibilityPageComponent {
         <p class="has-line-data" data-line-start="6" data-line-end="7">переключают все тогглы в выключенное состояние</p>
         `,
         approveTemplate: false,
+        hasCloseBtn: true,
       },
       modalClass: 'modal-dialog-centered',
     });

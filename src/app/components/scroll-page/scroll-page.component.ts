@@ -142,6 +142,7 @@ export class ScrollPageComponent {
         </p>
         `,
         approveTemplate: false,
+        hasCloseBtn: true,
       },
       modalClass: 'modal-dialog-centered',
     });

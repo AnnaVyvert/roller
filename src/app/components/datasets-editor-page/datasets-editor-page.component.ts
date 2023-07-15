@@ -211,6 +211,7 @@ export class DatasetsEditorPageComponent {
         </p>
         `,
         approveTemplate: false,
+        hasCloseBtn: true,
       },
       modalClass: 'modal-dialog-centered',
     });
