@@ -1,5 +1,9 @@
 <div class="head p-3">
-  <button type="button" class="btn btn-outline-secondary back" [routerLink]="checkJsonStore()">
+  <button
+    type="button"
+    class="btn btn-outline-secondary back"
+    [routerLink]="'/'"
+  >
     <i class="fa-solid fa-backward"></i>
   </button>
   Редактор датасетов
@@ -75,7 +79,7 @@
       >
         {{ el.value }}
       </td>
-      <td class='dataset-panel__row__action'>
+      <td class="dataset-panel__row__action">
         <button
           class="btn btn-outline-secondary"
           (click)="removeField(json.id)"
@@ -100,6 +104,7 @@
           <button
             class="btn btn-outline-secondary"
             #fieldSubmit
+            [disabled]="isFormValid()"
             (click)="addField()"
           >
             <i class="fa-solid fa-plus"></i>

@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
 import { ModalComponent } from '../modal/modal.component';
@@ -150,13 +150,20 @@ export class DatasetsEditorPageComponent {
     window.localStorage.setItem(this.localStoreName, this.storeStr);
   }
 
+  isFormValid() {
+    const values = this.addFieldForm.value
+    //@ts-ignore
+    return !values['name'].length || !values['pic_url'].length 
+  }
+
   ngOnInit(): void {
     this.store = this.loadStore();
     this.jsonStore = this.store[this.jsonStoreSelected];
     this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);
     Object.keys(this.jsonScheme.types).forEach((el) => {
-      this.addFieldForm.addControl(el, new FormControl(null));
+      this.addFieldForm.addControl(el, new FormControl(''));
     });
+    
     this.saveStore();
   }
 
