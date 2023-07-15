@@ -9,6 +9,7 @@ import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 export class ModalComponent {
   title: string | null = null;
   description: string | null = null;
+  approveTemplate: boolean = false;
 
   constructor(public modalRef: MdbModalRef<ModalComponent>) {}
 

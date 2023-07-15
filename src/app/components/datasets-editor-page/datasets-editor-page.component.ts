@@ -56,6 +56,7 @@ export class DatasetsEditorPageComponent {
       data: {
         title: 'Подтвердите удаление поля:',
         description: 'отменить это действие будет нельзя',
+        approveTemplate: true,
       },
       modalClass: 'modal-dialog-centered',
     });
@@ -98,6 +99,7 @@ export class DatasetsEditorPageComponent {
       data: {
         title: 'Подтвердите удаление датасета:',
         description: 'отменить это действие будет нельзя',
+        approveTemplate: true,
       },
       modalClass: 'modal-dialog-centered',
     });
@@ -151,9 +153,9 @@ export class DatasetsEditorPageComponent {
   }
 
   isFormValid() {
-    const values = this.addFieldForm.value
+    const values = this.addFieldForm.value;
     //@ts-ignore
-    return !values['name'].length || !values['pic_url'].length 
+    return !values['name'].length || !values['pic_url'].length;
   }
 
   ngOnInit(): void {
@@ -163,13 +165,24 @@ export class DatasetsEditorPageComponent {
     Object.keys(this.jsonScheme.types).forEach((el) => {
       this.addFieldForm.addControl(el, new FormControl(''));
     });
-    
+
     this.saveStore();
   }
 
   ngAfterViewInit(): void {
     window.addEventListener('keypress', (e) => {
       if (e.code === 'Enter') this.fieldSubmitBtn.nativeElement.click();
+    });
+  }
+
+  openManual() {
+    this.modalRef = this.modalService.open(ModalComponent, {
+      data: {
+        title: '!ГАЙД!',
+        description: `description`,
+        approveTemplate: false,
+      },
+      modalClass: 'modal-dialog-centered',
     });
   }
 }
