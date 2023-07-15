@@ -7,20 +7,17 @@ import { ScrollPageComponent } from './components/scroll-page/scroll-page.compon
 import { SwitchVisibilityPageComponent } from './components/switch-visibility-page/switch-visibility-page.component';
 import { DatasetsEditorPageComponent } from './components/datasets-editor-page/datasets-editor-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from './components/modal/modal.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScrollPageComponent,
     SwitchVisibilityPageComponent,
-    DatasetsEditorPageComponent
+    DatasetsEditorPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, ModalModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
