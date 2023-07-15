@@ -4,6 +4,7 @@ import { JsonScheme } from 'src/interfaces/jsonScheme';
 import {
   getValueFromStore,
   loadStore,
+  setIfStarterNeeded,
   setValue2Store,
 } from 'src/utils/json-worker';
 import { scrollDown, scrollUp } from 'src/utils/scroll';
@@ -23,13 +24,14 @@ export class ScrollPageComponent {
   selectedJson: string = getValueFromStore('selected-json') ?? '0';
   selectedIndex: number = parseInt(this.selectedJson);
 
-  store: JsonScheme[][] = loadStore('json');
+  store: JsonScheme[][] | [] = loadStore('json');
 
-  cards: JsonScheme[] = this.store[this.selectedIndex];
+  cards: JsonScheme[] = [];
+
+  cardTitle: string = '';
 
   displayedCards: JsonScheme[] = [];
 
-  cardTitle: string = this.cards[this.selectedIndex].name;
 
   checkboxStore: number[][] = JSON.parse(
     getValueFromStore('checkbox-store') ?? '[[]]'
@@ -37,6 +39,12 @@ export class ScrollPageComponent {
   checkboxStoreArray: number[] = this.checkboxStore[this.selectedIndex] ?? [];
 
   ngOnInit(): void {
+    setIfStarterNeeded();
+
+    this.cards = this.store[this.selectedIndex];
+    this.cardTitle = this.cards[this.selectedIndex].name;
+  
+
     this.cards = this.updateCardsWithFilters();
     this.displayedCards = scrollDown(this.cards, this.displayedCards);
   }
