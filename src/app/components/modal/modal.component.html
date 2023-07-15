@@ -1,14 +1,19 @@
 <div class="modal-content">
-  <div class="modal-header">
+  <div class="modal-header modal-center">
     <h5 class="modal-title">{{ title }}</h5>
   </div>
-  <ng-container [ngTemplateOutlet]="approveTemplate ? text2remove : customDescription"></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="approveTemplate ? text2remove : customDescription"
+  ></ng-container>
 
-  <ng-container *ngIf="approveTemplate" [ngTemplateOutlet]="approve"></ng-container>
+  <ng-container
+    *ngIf="approveTemplate"
+    [ngTemplateOutlet]="approve"
+  ></ng-container>
 </div>
 
 <ng-template #text2remove>
-  <div class="modal-body">
+  <div class="modal-body modal-center">
     <i class="fa-solid fa-skull-crossbones"></i>
     {{ description }}
     <i class="fa-solid fa-skull-crossbones"></i>
@@ -16,9 +21,7 @@
 </ng-template>
 
 <ng-template #customDescription>
-  <div class="modal-body">
-    {{ description }}
-  </div>
+  <div class="modal-body" [innerHTML]="description"></div>
 </ng-template>
 
 <ng-template #approve>

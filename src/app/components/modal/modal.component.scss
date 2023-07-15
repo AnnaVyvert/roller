@@ -5,8 +5,12 @@
 
   .modal-header,
   .modal-body {
-    text-align: center;
-    align-self: center;
+
+    &.modal-center {
+      text-align: center;
+      align-self: center;
+
+    }
   }
 
   .modal-footer {
