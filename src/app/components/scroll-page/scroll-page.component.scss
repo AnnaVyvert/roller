@@ -4,7 +4,7 @@
 
 .dropdown-toggle,
 .dropdown-menu {
-  width: var(--roller-max-width);
+  width: var(--roller-width);
   border: 1px solid var(--gray-color);
 
   .dropdown-item:hover {
@@ -14,17 +14,16 @@
 }
 
 .scroll-container {
-  margin: 4px;
-  width: 97%;
-  height: var(--height-roller);
+  min-height: var(--roller-height);
+  max-height: calc(var(--card-height) * 2);
   overflow-y: scroll;
   overflow-x: hidden;
   border: 1px solid var(--gray-color);
   position: relative;
   padding: 8px 0;
   border-radius: 4px;
-  box-shadow: 0 1px 5px rgba(0,0,0,.5);
-  max-width: var(--roller-max-width);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  width: var(--roller-width);
 }
 
 .card-deck {
@@ -37,6 +36,18 @@
     // transform: translateY(-50%);
     transform: translateY(15%);
   }
+
+  .card {
+    width: calc(var(--roller-width) - 20px);
+    height: var(--card-height);
+    margin-bottom: 8px;
+    border: 1px solid var(--gray-color);
+
+    & .card-img-top {
+      border-bottom: 1px solid var(--gray-color);
+      height: var(--card-img-height);
+    }
+  }
 }
 
 .indicator {
@@ -44,33 +55,21 @@
   z-index: 1;
   opacity: 0.5;
   background: var(--gray-color);
-  width: 100%;
   text-align: center;
-  top: calc(var(--height-roller)/2);
+  top: calc(var(--roller-height) / 2);
   border: 3px solid lightgrey;
-  max-width: var(--roller-max-width);
+  width: var(--roller-width);
 }
 
 .indicator-line {
   position: fixed;
   z-index: 1;
   opacity: 0.25;
-  width: 100%;
   text-align: center;
-  top: calc(var(--height-roller)/1.5);
+  // top: calc(var(--roller-height) / 1.5);
+  top: 37%;
   border-bottom: 1px solid firebrick;
-  max-width: var(--roller-max-width);
-}
-
-.card {
-  width: 95%;
-  margin-bottom: 20px;
-  border: 1px solid var(--gray-color);
-
-  & .card-img-top {
-    border-bottom: 1px solid var(--gray-color);
-    height: 200px;
-  }
+  width: var(--roller-width);
 }
 
 ::-webkit-scrollbar {
@@ -81,8 +80,13 @@
   text-align: center;
 
   .btn-group {
-    width: var(--roller-max-width);
+    width: var(--roller-width);
     margin: auto;
+
+    .btn {
+      // aspect-ratio: 1;
+      height: 48px;
+      font-size: 20px;
+    }
   }
 }
-
