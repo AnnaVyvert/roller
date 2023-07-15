@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
 import {
   getValueFromStore,
   loadStore,
   setValue2Store,
 } from 'src/utils/json-worker';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-switch-visibility-page',
@@ -21,6 +23,9 @@ export class SwitchVisibilityPageComponent {
   );
   checkboxStoreArray: number[] = this.checkboxStore[this.selectedIndex] ?? [];
 
+  constructor(private modalService: MdbModalService) {}
+  modalRef: MdbModalRef<ModalComponent> | null = null;
+
   ngOnInit(): void {}
 
   toggleKey(id: number) {
@@ -30,5 +35,16 @@ export class SwitchVisibilityPageComponent {
 
     this.checkboxStore[this.selectedIndex] = this.checkboxStoreArray;
     setValue2Store('checkbox-store', JSON.stringify(this.checkboxStore));
+  }
+
+  openManual() {
+    this.modalRef = this.modalService.open(ModalComponent, {
+      data: {
+        title: '!ГАЙД!',
+        description: `description`,
+        approveTemplate: false,
+      },
+      modalClass: 'modal-dialog-centered',
+    });
   }
 }

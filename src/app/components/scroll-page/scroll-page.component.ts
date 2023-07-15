@@ -7,6 +7,8 @@ import {
   setValue2Store,
 } from 'src/utils/json-worker';
 import { scrollDown, scrollUp } from 'src/utils/scroll';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-scroll-page',
@@ -111,5 +113,20 @@ export class ScrollPageComponent {
         this.scrollElement!
       );
     }
+  }
+
+
+  constructor(private modalService: MdbModalService) {}
+  modalRef: MdbModalRef<ModalComponent> | null = null;
+
+  openManual() {
+    this.modalRef = this.modalService.open(ModalComponent, {
+      data: {
+        title: '!ГАЙД!',
+        description: `description`,
+        approveTemplate: false,
+      },
+      modalClass: 'modal-dialog-centered',
+    });
   }
 }
