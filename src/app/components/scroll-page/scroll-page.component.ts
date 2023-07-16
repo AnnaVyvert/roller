@@ -24,14 +24,13 @@ export class ScrollPageComponent {
   selectedJson: string = getValueFromStore('selected-json') ?? '0';
   selectedIndex: number = parseInt(this.selectedJson);
 
-  store: JsonScheme[][] | [] = loadStore('json-store');
+  store: JsonScheme[][] | [] = [];
 
   cards: JsonScheme[] = [];
 
   cardTitle: string = '';
 
   displayedCards: JsonScheme[] = [];
-
 
   checkboxStore: number[][] = JSON.parse(
     getValueFromStore('checkbox-store') ?? '[[]]'
@@ -40,10 +39,9 @@ export class ScrollPageComponent {
 
   ngOnInit(): void {
     setIfStarterNeeded();
-
+    this.store = loadStore('json-store');
     this.cards = this.store[this.selectedIndex];
     this.cardTitle = this.cards[this.selectedIndex]?.name;
-  
 
     this.cards = this.updateCardsWithFilters();
     this.displayedCards = scrollDown(this.cards, this.displayedCards);
@@ -122,7 +120,6 @@ export class ScrollPageComponent {
       );
     }
   }
-
 
   constructor(private modalService: MdbModalService) {}
   modalRef: MdbModalRef<ModalComponent> | null = null;
