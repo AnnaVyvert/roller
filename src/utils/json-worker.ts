@@ -14,7 +14,8 @@ export function setValue2Store(localStoreName: string, value: string): void {
 }
 
 export function setIfStarterNeeded(): void {
-  if (!getValueFromStore('json-store')?.length)
+  if (!getValueFromStore('json-store')?.length) {
     setValue2Store('json-store', JSON.stringify(starter, undefined, 2));
     setValue2Store('selected-json', '0');
+  }
 }
