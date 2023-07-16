@@ -4,6 +4,7 @@ import { JsonScheme } from 'src/interfaces/jsonScheme';
 import {
   getValueFromStore,
   loadStore,
+  setIfStarterNeeded,
   setValue2Store,
 } from 'src/utils/json-worker';
 import { ModalComponent } from '../modal/modal.component';
@@ -14,7 +15,7 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./switch-visibility-page.component.scss'],
 })
 export class SwitchVisibilityPageComponent {
-  store: JsonScheme[][] = loadStore('json');
+  store: JsonScheme[][] = loadStore('json-store');
   selectedJson: string = getValueFromStore('selected-json') ?? '0';
   selectedIndex: number = parseInt(this.selectedJson);
   jsonStore: JsonScheme[] = this.store[this.selectedIndex];
@@ -26,7 +27,9 @@ export class SwitchVisibilityPageComponent {
   constructor(private modalService: MdbModalService) {}
   modalRef: MdbModalRef<ModalComponent> | null = null;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setIfStarterNeeded();
+  }
 
   toggleKey(id: number) {
     this.checkboxStoreArray.includes(id)

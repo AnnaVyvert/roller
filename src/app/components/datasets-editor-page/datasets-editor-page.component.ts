@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
 import { ModalComponent } from '../modal/modal.component';
-import { getValueFromStore, setValue2Store } from 'src/utils/json-worker';
+import { getValueFromStore, setIfStarterNeeded, setValue2Store } from 'src/utils/json-worker';
 import { preloadImage } from 'src/utils/image-preloader';
 
 @Component({
@@ -18,7 +18,7 @@ export class DatasetsEditorPageComponent {
 
   constructor(private modalService: MdbModalService) {}
 
-  localStoreName = 'json';
+  localStoreName = 'json-store';
 
   jsonScheme = {
     types: {
@@ -164,6 +164,7 @@ export class DatasetsEditorPageComponent {
   }
 
   ngOnInit(): void {
+    setIfStarterNeeded();
     this.store = this.loadStore();
     this.jsonStore = this.store[this.jsonStoreSelected];
     this.jsonStoreStr = JSON.stringify(this.jsonStore, undefined, 2);

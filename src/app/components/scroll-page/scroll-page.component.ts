@@ -24,7 +24,7 @@ export class ScrollPageComponent {
   selectedJson: string = getValueFromStore('selected-json') ?? '0';
   selectedIndex: number = parseInt(this.selectedJson);
 
-  store: JsonScheme[][] | [] = loadStore('json');
+  store: JsonScheme[][] | [] = loadStore('json-store');
 
   cards: JsonScheme[] = [];
 
