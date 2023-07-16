@@ -1,27 +1,46 @@
-# App
+# scroll-app
+(зачем и почему?)
+### цель:
+- рандомайзинг элементов датасетов (json)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+### задачи, которые выполняет приложение:
+- CRUD над массивом датасетов
+- импорт и экспорт датасетов
+- управление отображением карточек или элементов датасетов
+- ручная и автоматическая прокрутки бесконечной ленты
 
-## Development server
+# requirements
+- angular
+- mdb-angular-ui-kit
+- http-angular-server
+- pm2 (optional)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# setup
+```
+  sudo apt-get install npm
+  npm i
+  sudo npm i http-angular-server -g
+  sudo npm i pm2 -g
 
-## Code scaffolding
+  pm2 start angular-http-server --name __NAME__ -- index.html -p __PORT__
+  pm2 save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## pm2 management
+```
+  pm2 status
+  pm2 kill
+```
 
-## Build
+# problems & drawbacks
+### scroll-page
+- высота скролл контейнера относительно экрана (неточно изменяется)
+- индикатор со статусом тайтла карточки (вместо просто красной полосы)
+### switch-visibility-page
+- ховер убрал не полностью
+### datasets-editor-page
+- куча  компонентов на странице
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# P.S.
+- если ваша ОС не линукс, то делайте **SETUP** ручками
+- приложение собрано за 7 дней, в свободное время
