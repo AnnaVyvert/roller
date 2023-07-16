@@ -49,7 +49,7 @@ export class DatasetsEditorPageComponent {
 
     this.addFieldForm.reset();
 
-    preloadImage(values['pic_url']);
+    preloadImage([values['pic_url']]);
 
     this.updateJsonStore();
     this.saveStore();
@@ -172,6 +172,7 @@ export class DatasetsEditorPageComponent {
       this.addFieldForm.addControl(el, new FormControl(null));
     });
     preloadImage(this.jsonStore.map((e: JsonScheme) => e.pic_url));
+    preloadImage(['assets/shrek_swamp.jpg']);
     this.saveStore();
   }
 

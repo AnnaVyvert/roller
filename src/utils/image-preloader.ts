@@ -1,5 +1,5 @@
-export function preloadImage(urls: string | string[]): void {
-  for (let url of arguments[0]) {
+export function preloadImage(urls: string[]): void {
+  for (let url of urls) {
     let img = new Image();
     img.src = url;
   }

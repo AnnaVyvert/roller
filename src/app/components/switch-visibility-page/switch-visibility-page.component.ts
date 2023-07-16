@@ -8,6 +8,7 @@ import {
   setValue2Store,
 } from 'src/utils/json-worker';
 import { ModalComponent } from '../modal/modal.component';
+import { preloadImage } from 'src/utils/image-preloader';
 
 @Component({
   selector: 'app-switch-visibility-page',
@@ -29,6 +30,7 @@ export class SwitchVisibilityPageComponent {
 
   ngOnInit(): void {
     setIfStarterNeeded();
+    preloadImage(['assets/shrek_swamp.jpg']);
   }
 
   toggleKey(id: number) {
