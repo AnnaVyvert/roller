@@ -3,7 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
 import { ModalComponent } from '../modal/modal.component';
-import { getValueFromStore, setIfStarterNeeded, setValue2Store } from 'src/utils/json-worker';
+import {
+  getValueFromStore,
+  setIfStarterNeeded,
+  setValue2Store,
+} from 'src/utils/json-worker';
 import { preloadImage } from 'src/utils/image-preloader';
 
 @Component({
@@ -196,6 +200,7 @@ export class DatasetsEditorPageComponent {
         <h4 class="code-line" data-line-start="5" data-line-end="6"><a id="___5"></a>таблица полей датасета:</h4>
         <p class="has-line-data" data-line-start="6" data-line-end="10">
           позволяет удалять поле датасета<br />
+          нажатие на ячейку копирует её содержимое в буфер обмена<br />
           нижняя форма позволяет добавлять новое поле<br />
           если форма невалидна (<i class="fa-solid fa-ban"></i>), это означает, что<br />
           одно из полей ввода пустое, иначе (<i class="fa-solid fa-plus"></i>)
@@ -222,5 +227,12 @@ export class DatasetsEditorPageComponent {
       },
       modalClass: 'modal-dialog-centered',
     });
+  }
+
+  copy2clipboard(ev: EventTarget | null): void {
+    if (ev) {
+      const el = ev as HTMLInputElement;
+      navigator.clipboard.writeText(el.outerText);
+    }
   }
 }

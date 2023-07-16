@@ -80,6 +80,7 @@
         class="td-left"
         *ngFor="let el of json | keyvalue"
         [class.non-display]="!jsonScheme.show.includes(el.key)"
+        (click)="copy2clipboard($event.target)"
       >
         {{ el.value }}
       </td>
