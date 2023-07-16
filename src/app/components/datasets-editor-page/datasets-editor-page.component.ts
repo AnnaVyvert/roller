@@ -4,6 +4,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { JsonScheme } from 'src/interfaces/jsonScheme';
 import { ModalComponent } from '../modal/modal.component';
 import { getValueFromStore, setValue2Store } from 'src/utils/json-worker';
+import { preloadImage } from 'src/utils/image-preloader';
 
 @Component({
   selector: 'app-datasets-editor-page',
@@ -40,12 +41,15 @@ export class DatasetsEditorPageComponent {
   jsonStoreStr: string = '';
 
   addField() {
+    const values = this.addFieldForm.value as { name: string; pic_url: string };
     this.jsonStore.push({
-      ...(this.addFieldForm.value as { name: string; pic_url: string }),
+      ...values,
       id: Math.random(),
     });
 
     this.addFieldForm.reset();
+
+    preloadImage(values['pic_url']);
 
     this.updateJsonStore();
     this.saveStore();
@@ -86,6 +90,7 @@ export class DatasetsEditorPageComponent {
     this.jsonStoreSelected = id;
 
     this.updateJsonStore();
+    preloadImage(this.jsonStore.map((e: JsonScheme) => e.pic_url));
   }
 
   updateJsonStore() {
@@ -153,9 +158,8 @@ export class DatasetsEditorPageComponent {
   }
 
   isFormInvalid() {
-    const values = this.addFieldForm.value;
-    
-    //@ts-ignore
+    const values = this.addFieldForm.value as { name: string; pic_url: string };
+
     return !values['name'] || !values['pic_url'];
   }
 
@@ -166,7 +170,7 @@ export class DatasetsEditorPageComponent {
     Object.keys(this.jsonScheme.types).forEach((el) => {
       this.addFieldForm.addControl(el, new FormControl(null));
     });
-
+    preloadImage(this.jsonStore.map((e: JsonScheme) => e.pic_url));
     this.saveStore();
   }
 
