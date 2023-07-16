@@ -16,7 +16,12 @@ import { ModalModule } from './components/modal/modal.module';
     SwitchVisibilityPageComponent,
     DatasetsEditorPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, ModalModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ModalModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

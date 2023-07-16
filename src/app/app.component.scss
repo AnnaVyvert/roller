@@ -1,0 +1,13 @@
+::ng-deep {
+  .btn:hover {
+    background-color: initial !important;
+    color: var(--gray-color);
+  }
+
+  input[type="checkbox"] {
+    box-shadow: none !important;
+
+    &:focus {
+    }
+  }
+}
