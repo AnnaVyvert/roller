@@ -34,9 +34,8 @@
   position: relative;
 
   &.one-el {
-    // margin-top: 50%;
-    // transform: translateY(-50%);
-    transform: translateY(15%);
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .card {

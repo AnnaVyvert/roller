@@ -42,7 +42,7 @@ export class ScrollPageComponent {
     setIfStarterNeeded();
 
     this.cards = this.store[this.selectedIndex];
-    this.cardTitle = this.cards[this.selectedIndex].name;
+    this.cardTitle = this.cards[this.selectedIndex]?.name;
   
 
     this.cards = this.updateCardsWithFilters();

@@ -23,16 +23,34 @@
   <div class="scroll-container" #scrollContainer (scroll)="onScroll()">
     <!-- <div class='indicator'>{{cardTitle}}</div> -->
     <div class="indicator-line"></div>
-    <div class="card-deck" [class.one-el]='cards.length === 1'>
+    <div class="card-deck" [class.one-el]="cards.length <= 1">
+      <div class="card" *ngIf="!displayedCards.length">
+        <img class="card-img-top" src="assets/shrek_swamp.jpg" />
+        <div class="card-body">
+          <h5 class="card-title">
+            <ng-container *ngIf="!cards.length">карточек нет</ng-container>
+          </h5>
+          <p class="card-text">
+            <ng-container>перейдите в раздел |</ng-container>
+            <i
+              class="fa-solid fa-square-check"
+              style="color: var(--gray-color)"
+            ></i>
+            |или|
+            <i
+              class="fa-solid fa-file-pen"
+              style="color: var(--gray-color)"
+            ></i
+            >|
+          </p>
+        </div>
+        <div class="card-footer">а ещё у карточки есть футер</div>
+      </div>
       <div class="card" *ngFor="let card of displayedCards">
-        <img class="card-img-top" [src]="card.pic_url" alt="Card image" />
+        <img class="card-img-top" [src]="card.pic_url" />
         <div class="card-body">
           <h5 class="card-title">{{ card.name }}</h5>
-          <!-- <p class="card-text">{{ card.description }}</p> -->
         </div>
-        <!-- <div class="card-footer">
-          {{ card.footer }}
-        </div> -->
       </div>
     </div>
   </div>
