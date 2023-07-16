@@ -90,8 +90,8 @@ export class ScrollPageComponent {
   }
 
   randomScroll(): void {
-    let scrollPower = getRandomInt(-60, -10);
-    const powerLimit = getRandomInt(80, 140);
+    let scrollPower = getRandomInt(-90, -30);
+    const powerLimit = getRandomInt(120, 180);
     const interval = setInterval(() => {
       this.scrollContainer.nativeElement.scrollTop += scrollPower;
       scrollPower++;
