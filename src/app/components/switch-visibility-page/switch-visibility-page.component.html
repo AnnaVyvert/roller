@@ -1,25 +1,25 @@
-<section *ngIf="!selectedJson" class="empty-store">
+<section *ngIf="!selectedJson || !jsonStore.length" class="empty-store">
   <p>[NO DATA]</p>
-  <button type="button" class="btn btn-outline-secondary" routerLink="/">
+  <button type="button" class="btn btn-outline-secondary" routerLink="/datasets-editor">
     <i class="fa-solid fa-backward"></i>
   </button>
 </section>
 
-<section *ngIf="selectedJson">
-  <div class="head p-3">
-    <button type="button" class="btn btn-outline-secondary back" routerLink="/">
-      <i class="fa-solid fa-backward"></i>
-    </button>
-    Видимость карточек
-    <button
-      type="button"
-      class="btn btn-outline-secondary manual"
-      (click)="openManual()"
-    >
-      <i class="fa-sharp fa-solid fa-circle-question"></i>
-    </button>
-  </div>
+<div class="head p-3" *ngIf="selectedJson && jsonStore.length">
+  <button type="button" class="btn btn-outline-secondary back" routerLink="/">
+    <i class="fa-solid fa-backward"></i>
+  </button>
+  Видимость карточек
+  <button
+    type="button"
+    class="btn btn-outline-secondary manual"
+    (click)="openManual()"
+  >
+    <i class="fa-sharp fa-solid fa-circle-question"></i>
+  </button>
+</div>
 
+<section>
   <div class="switch-container">
     <div class="form-check form-switch m-2" *ngFor="let el of jsonStore">
       <input
@@ -35,7 +35,7 @@
   </div>
 </section>
 
-<section class="switch-container">
+<section *ngIf="selectedJson && jsonStore.length" class="switch-container">
   <div class="form-check form-switch m-2">
     <input
       class="form-check-input"
